@@ -15,7 +15,6 @@ class Solution:
             queue=deque()
             queue.append(root)
             depth=0
-            # print(queue[0].val)
             while queue: 
                 for i in range(len(queue)):
                     curr=queue.popleft()
@@ -23,7 +22,16 @@ class Solution:
                         queue.append(child)
                 depth+=1
             return depth 
-        return bfs(root)    
+        
+        def dfs(root):
+            depth=0
+            if not root:
+                return 0
+            for child in root.children:
+                depth=max(depth,dfs(child))
+            return depth+1
+   
+        return dfs(root)  
                 
 
 
